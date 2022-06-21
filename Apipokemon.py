@@ -1,5 +1,3 @@
-#api sacada de https://pokeapi.co/
-
 from tkinter import DISABLED, PhotoImage, Tk, Label, Button,Text
 import tkinter
 import urllib.request,urllib.parse,urllib.error
@@ -34,7 +32,6 @@ class Pokedex:
     def buscar(self):
         url=api+self.dato.get()
         url2="https://pokeapi.co/api/v2/pokemon-species/"+self.dato.get()
-        
         try:
             self.request=urllib.request.Request(url)
             self.request.add_header("User-agent","chesse")
@@ -47,9 +44,9 @@ class Pokedex:
             self.datose=urllib.request.urlopen(self.request)
             self.data=self.datose.read().decode()
             self.js2=json.loads(self.data)
+            
         except:
             print("Error")
-            
         self.abilitiesl=""
         self.types=""
         self.info=""
@@ -61,6 +58,8 @@ class Pokedex:
         for textos in self.js2["flavor_text_entries"]:
             if textos["language"]["name"] == "es":
                 self.info=textos["flavor_text"]
+
+        self.name=self.js["forms"][0]["name"]
 
 
         self.imagen=self.js["sprites"]["front_default"]
@@ -77,6 +76,10 @@ class Pokedex:
 
         self.descripciont=Label(self.master,text="Descripción")
         self.descripciont.place(relx=0.400, rely=.300)
+
+        self.descripciont=Label(self.master,text=self.name,width=15)
+        self.descripciont.place(relx=0.715, rely=.300)
+
 
         self.img=PhotoImage(file="pokemon.png")
         self.esim=Label(self.master,image=self.img)
@@ -98,7 +101,11 @@ class Pokedex:
         self.descripcion.insert(tkinter.INSERT,self.info)
         self.descripcion.place( rely=.400)
         self.descripcion.config(state=DISABLED)
+
+
         
+        
+
 
 root=Tk()
 Pokedex(root)
