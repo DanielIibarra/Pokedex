@@ -1,3 +1,5 @@
+#api sacada de https://pokeapi.co/
+
 from tkinter import DISABLED, PhotoImage, Tk, Label, Button,Text
 import tkinter
 import urllib.request,urllib.parse,urllib.error
