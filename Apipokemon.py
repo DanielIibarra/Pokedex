@@ -79,7 +79,6 @@ class Pokedex:
         self.descripciont=Label(self.master,text="Descripción")
         self.descripciont.place(relx=0.400, rely=.300)
 
-
         self.img=PhotoImage(file="pokemon.png")
         self.esim=Label(self.master,image=self.img)
         self.esim.place(relx=0.700, rely=.065)
@@ -100,11 +99,7 @@ class Pokedex:
         self.descripcion.insert(tkinter.INSERT,self.info)
         self.descripcion.place( rely=.400)
         self.descripcion.config(state=DISABLED)
-
-
         
-        
-
 
 root=Tk()
 Pokedex(root)
