@@ -21,7 +21,6 @@ class Pokedex:
         self.abilitiesl=str()
         self.master=master
         master.title("Pokedex")
-        master.configure(bg="red")
         master.resizable(width=False, height=False)
         self.etiqueta=Label(master,text="Buscar Pokemon")
         self.etiqueta.place(relx=0.01, rely=0.015)
@@ -35,7 +34,7 @@ class Pokedex:
     def buscar(self):
         url=api+self.dato.get()
         url2="https://pokeapi.co/api/v2/pokemon-species/"+self.dato.get()
-        print(url)
+        
         try:
             self.request=urllib.request.Request(url)
             self.request.add_header("User-agent","chesse")
@@ -48,9 +47,9 @@ class Pokedex:
             self.datose=urllib.request.urlopen(self.request)
             self.data=self.datose.read().decode()
             self.js2=json.loads(self.data)
-            
         except:
             print("Error")
+            
         self.abilitiesl=""
         self.types=""
         self.info=""
